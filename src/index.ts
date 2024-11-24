@@ -2,6 +2,8 @@
 
 import { Command } from "commander";
 import packageJson from "../package.json" assert { type: "json" };
+import { init } from "./commands/init";
+import { add } from "./commands/add";
 
 process.on("SIGINT", () => process.exit(0));
 process.on("SIGTERM", () => process.exit(0));
@@ -13,29 +15,29 @@ async function main() {
     .version(
       `creanote ${packageJson.version}`,
       "-v, --version",
-      "display the version number"
+      "Display the version number"
     );
+
+  program
+    .command("init")
+    .description("Initialize creanote in the current directory")
+    .action(init);
+
+  program.command("add <type>").description("Add a new note").action(add);
 
   program.addHelpText(
     "after",
     `
 Example usage:
-  $ creanote --v
-  $ creanote --h
+  $ creanote init       // Initialize creanote
+  $ creanote add daily  // Add a daily note
+  $ creanote add note   // Add a regular note
+  $ creanote --v        // Display version
+  $ creanote --h        // Display help
 `
   );
 
   program.parse();
-
-  const options = program.opts();
-  if (Object.keys(options).length === 0) {
-    console.log("");
-    console.log(`creanote ${packageJson.version}`);
-    console.log("");
-    console.error("No command or options provided.");
-    console.error("Use `creanote --help` for usage instructions.");
-    process.exit(1);
-  }
 }
 
 main();

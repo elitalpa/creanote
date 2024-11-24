@@ -6,8 +6,8 @@
     "noEmit": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "module": "NodeNext",
-    "moduleResolution": "nodenext",
+    "module": "esnext",
+    "moduleResolution": "node",
     "isolatedModules": true,
     "paths": {
       "@/*": ["./src/*"]
