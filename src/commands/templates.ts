@@ -1,4 +1,4 @@
-# {{date}}
+export const dailyTemplate = `# {{date}}
 
 ## 🕒 Schedule
 
@@ -28,3 +28,7 @@
 - review...
 
 <!-- created_at: {{created_at}} -->
+`;
+
+export const noteTemplate = `# note
+`;

@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { dailyTemplate, noteTemplate } from "./templates";
 
 export function init() {
   const initDirectory = path.join(process.cwd(), ".creanote");
@@ -9,39 +10,16 @@ export function init() {
     process.exit(0);
   }
 
-  const templatesDir = path.join(process.cwd(), "src", "templates");
-
-  if (!fs.existsSync(templatesDir)) {
-    console.log(
-      "Templates directory does not exist. Ensure the 'src/templates' folder exists."
-    );
-    process.exit(1);
-  }
-
   fs.mkdirSync(path.join(initDirectory, "templates"), { recursive: true });
 
-  const dailyTemplatePath = path.join(templatesDir, "default", "daily.md");
-  const noteTemplatePath = path.join(templatesDir, "default", "note.md");
-
-  if (fs.existsSync(dailyTemplatePath)) {
-    fs.copyFileSync(
-      dailyTemplatePath,
-      path.join(initDirectory, "templates", "daily.md")
-    );
-  } else {
-    console.log("daily.md not found in templates/default.");
-    process.exit(1);
-  }
-
-  if (fs.existsSync(noteTemplatePath)) {
-    fs.copyFileSync(
-      noteTemplatePath,
-      path.join(initDirectory, "templates", "note.md")
-    );
-  } else {
-    console.log("note.md not found in templates/default.");
-    process.exit(1);
-  }
+  fs.writeFileSync(
+    path.join(initDirectory, "templates", "daily.md"),
+    dailyTemplate
+  );
+  fs.writeFileSync(
+    path.join(initDirectory, "templates", "note.md"),
+    noteTemplate
+  );
 
   const config = {
     info: {
