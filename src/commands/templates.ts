@@ -30,5 +30,7 @@ export const dailyTemplate = `# {{date}}
 <!-- created_at: {{created_at}} -->
 `;
 
-export const noteTemplate = `# note
+export const noteTemplate = `# {{date}} note
+
+<!-- created_at: {{created_at}} -->
 `;

@@ -4,7 +4,7 @@ Easily create organized notes.
 
 ## Usage
 
-Use the `init` command to initialize a `.creanote` directory with settings and templates.
+Use the `init` command to initialize a hidden `.creanote` directory containing the config and templates files.
 
 ```bash
 npx creanote init
@@ -12,7 +12,7 @@ npx creanote init
 
 ## add
 
-Use the `add` command to add a daily note or just a note.
+Use the `add` command to add a daily note or a regular note.
 
 ```bash
 npx creanote add daily
