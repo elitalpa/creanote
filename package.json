@@ -21,7 +21,7 @@
   ],
   "type": "module",
   "bin": {
-    "creanote": "./dist/index.js"
+    "creanote": "dist/index.js"
   },
   "engines": {
     "node": ">=20.0.0"
