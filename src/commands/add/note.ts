@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { copyTemplate } from "../utils";
+import { replaceTemplateVariables } from "../utils";
 import { Config } from "@/types";
 
 export function addNote(config: Config) {
@@ -24,6 +24,26 @@ export function addNote(config: Config) {
     return;
   }
 
-  copyTemplate(config.settings.templatePath.note, noteFile);
+  const templatePath = path.resolve(
+    process.cwd(),
+    config.settings.templatePath.note
+  );
+
+  let templateContent = "";
+  try {
+    templateContent = fs.readFileSync(templatePath, "utf-8");
+  } catch (error) {
+    console.error("Error reading the template file:", error);
+    return;
+  }
+
+  const content = replaceTemplateVariables(templateContent, {
+    date: dateStr,
+    created_at: today.toISOString(),
+    year: year.toString(),
+    month: month.toString(),
+  });
+
+  fs.writeFileSync(noteFile, content);
   console.log(`Note added: ${noteFile}`);
 }
