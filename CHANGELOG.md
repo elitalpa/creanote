@@ -1,5 +1,11 @@
 # creanote
 
+## 0.1.3
+
+### Patch Changes
+
+- [`df89d15`](https://github.com/elitalpa/creanote/commit/df89d15ee2bbdd8ee72c0f22cd9cf58605299176) Thanks [@elitalpa](https://github.com/elitalpa)! - fix: used old build
+
 ## 0.1.2
 
 ### Patch Changes
