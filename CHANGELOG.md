@@ -1,5 +1,11 @@
 # creanote
 
+## 0.1.1
+
+### Patch Changes
+
+- [`7201140`](https://github.com/elitalpa/creanote/commit/7201140c54ae4e95b7d71c2442edf55ae33731f7) Thanks [@elitalpa](https://github.com/elitalpa)! - fixing could not find templates error on init
+
 ## 0.1.0
 
 ### Minor Changes
