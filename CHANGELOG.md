@@ -1,5 +1,13 @@
 # creanote
 
+## 0.1.2
+
+### Patch Changes
+
+- [`869ff5f`](https://github.com/elitalpa/creanote/commit/869ff5f420e53423fc03221e9b05a21010e82e48) Thanks [@elitalpa](https://github.com/elitalpa)! - improving note template and updating readme
+
+- [`49641e2`](https://github.com/elitalpa/creanote/commit/49641e270ca4c8e9f18caa69ad60e17bce3382ba) Thanks [@elitalpa](https://github.com/elitalpa)! - improving note template and updating readme
+
 ## 0.1.1
 
 ### Patch Changes
