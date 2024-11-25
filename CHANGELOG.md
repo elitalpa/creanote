@@ -1,5 +1,11 @@
 # creanote
 
+## 0.1.4
+
+### Patch Changes
+
+- [`120c88f`](https://github.com/elitalpa/creanote/commit/120c88fc453e904e902f2f36ad07fc39a3bdb3c8) Thanks [@elitalpa](https://github.com/elitalpa)! - fix note template vars
+
 ## 0.1.3
 
 ### Patch Changes
