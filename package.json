@@ -20,6 +20,7 @@
     "dist"
   ],
   "type": "module",
+  "types": "dist/index.d.ts",
   "bin": {
     "creanote": "dist/index.js"
   },

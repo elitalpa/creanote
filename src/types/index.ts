@@ -1,4 +1,10 @@
-export interface Config {
+interface Config {
+  info: {
+    name: string;
+    author: string;
+    url: string;
+    license: string;
+  };
   settings: {
     templatePath: {
       daily: string;
@@ -10,3 +16,5 @@ export interface Config {
     };
   };
 }
+
+export type { Config };
