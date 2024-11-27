@@ -1,6 +1,6 @@
 {
   "name": "creanote",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Easily create organized notes.",
   "main": "src/index.ts",
   "scripts": {

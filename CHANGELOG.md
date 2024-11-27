@@ -1,5 +1,11 @@
 # creanote
 
+## 0.1.5
+
+### Patch Changes
+
+- [`9fa1830`](https://github.com/elitalpa/creanote/commit/9fa18308f83ff84c281759cac8f641f7d87069a8) Thanks [@elitalpa](https://github.com/elitalpa)! - Fixing error handling when no config file found + improving build config
+
 ## 0.1.4
 
 ### Patch Changes
