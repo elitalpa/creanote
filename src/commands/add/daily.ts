@@ -4,12 +4,12 @@ import { getWeekNumber } from "../utils";
 import { replaceTemplateVariables } from "../utils";
 import { Config } from "@/types";
 
-export function addDaily(config: Config) {
-  const today = new Date();
+export function addDaily(config: Config, date?: string) {
+  const today = date ? new Date(date) : new Date();
   const year = today.getFullYear();
   const month = String(today.getMonth() + 1).padStart(2, "0");
   const day = String(today.getDate()).padStart(2, "0");
-  const week = getWeekNumber(today);
+  const week = String(getWeekNumber(today)).padStart(2, "0");
 
   const fileName = `${year}-${month}-${day}.md`;
 
