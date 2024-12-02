@@ -3,7 +3,7 @@ import { join } from "path";
 import { addDaily } from "./add/daily";
 import { addNote } from "./add/note";
 
-export function add(type: string) {
+export function add(type: string, options: { date?: string }) {
   const configPath = join(process.cwd(), ".creanote", "config.json");
 
   if (!existsSync(configPath)) {
@@ -17,7 +17,7 @@ export function add(type: string) {
 
   switch (type) {
     case "daily":
-      addDaily(config);
+      addDaily(config, options.date);
       break;
     case "note":
       addNote(config);
