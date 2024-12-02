@@ -110,6 +110,7 @@ daily
 ### config
 
 You can change the paths of the templates used and where the notes are created in the `.creanote/config.json` file :
+
 ```json
 {
   "info": {
