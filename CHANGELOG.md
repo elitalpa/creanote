@@ -1,5 +1,11 @@
 # creanote
 
+## 0.2.0
+
+### Minor Changes
+
+- [`fa7d51c`](https://github.com/elitalpa/creanote/commit/fa7d51ca61a8e76f753f46f187fd61094857a5ea) Thanks [@elitalpa](https://github.com/elitalpa)! - adding --date option for `add daily` command
+
 ## 0.1.5
 
 ### Patch Changes
