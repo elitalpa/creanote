@@ -81,7 +81,7 @@ test("should add a daily note", async () => {
     "daily",
     `${year}`,
     `${year}-${month}`,
-    `week-${getWeekNumber(date)}`,
+    `week-${String(getWeekNumber(date)).padStart(2, "0")}`,
     `${year}-${month}-${day}.md`
   );
 
