@@ -1,5 +1,11 @@
 # creanote
 
+## 0.2.2
+
+### Patch Changes
+
+- [`28cf622`](https://github.com/elitalpa/creanote/commit/28cf622f1be629e4dbdbb7f35c01af4abbece3d3) Thanks [@elitalpa](https://github.com/elitalpa)! - fixing week number calculation
+
 ## 0.2.0
 
 ### Minor Changes
