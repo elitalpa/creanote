@@ -1,5 +1,11 @@
 # creanote
 
+## 0.2.3
+
+### Patch Changes
+
+- [#5](https://github.com/elitalpa/creanote/pull/5) [`e8ab8ff`](https://github.com/elitalpa/creanote/commit/e8ab8ffbfae2d6f2ea3bbcb6f40f81eaad36c0e5) Thanks [@elitalpa](https://github.com/elitalpa)! - updating license and new release workflow
+
 ## 0.2.2
 
 ### Patch Changes
