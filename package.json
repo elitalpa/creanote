@@ -22,5 +22,13 @@
   "engines": {
     "node": ">=20"
   },
-  "name": "with-changesets"
+  "name": "with-changesets",
+  "pnpm": {
+    "overrides": {
+      "braces@<3.0.3": ">=3.0.3",
+      "micromatch@<4.0.8": ">=4.0.8",
+      "esbuild@<=0.24.2": ">=0.25.0",
+      "@babel/runtime@<7.26.10": ">=7.26.10"
+    }
+  }
 }
