@@ -50,14 +50,14 @@
   },
   "homepage": "https://github.com/elitalpa/creanote#readme",
   "devDependencies": {
-    "@changesets/changelog-github": "^0.5.0",
-    "@changesets/cli": "^2.27.10",
-    "@types/node": "^20.17.7",
-    "prettier": "^3.3.3",
+    "@changesets/changelog-github": "^0.5.1",
+    "@changesets/cli": "^2.29.5",
+    "@types/node": "^20.19.1",
+    "prettier": "^3.5.3",
     "rimraf": "^6.0.1",
-    "tsup": "^8.3.5",
-    "typescript": "^5.7.2",
-    "vitest": "^2.1.5"
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
   },
   "dependencies": {
     "commander": "^12.1.0",
