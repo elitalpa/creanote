@@ -61,6 +61,7 @@
   },
   "dependencies": {
     "commander": "^12.1.0",
+    "date-fns": "4.1.0",
     "handlebars": "^4.7.8"
   }
 }
