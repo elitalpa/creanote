@@ -12,7 +12,7 @@
     "format:check": "prettier --check .",
     "format:fix": "prettier --write .",
     "release": "changeset version",
-    "publish": "changeset publish",
+    "manual-publish": "changeset publish",
     "clean": "rimraf dist && rimraf node_modules",
     "ci": "npm run format:check && npm run typecheck && npm run build && npm run test"
   },
