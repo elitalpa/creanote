@@ -1,0 +1,66 @@
+{
+  "name": "creanote",
+  "version": "0.2.2",
+  "description": "Easily create organized notes.",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "tsup --watch",
+    "start": "node dist/index.js",
+    "build": "tsup",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "format:check": "prettier --check .",
+    "format:fix": "prettier --write .",
+    "release": "changeset version",
+    "publish": "changeset publish",
+    "clean": "rimraf dist && rimraf node_modules",
+    "ci": "npm run format:check && npm run typecheck && npm run build && npm run test"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "creanote": "dist/index.js"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elitalpa/creanote.git"
+  },
+  "keywords": [
+    "notes",
+    "cli",
+    "note-taking",
+    "command-line",
+    "productivity",
+    "shell",
+    "bash",
+    "local-first",
+    "note-taker",
+    "markdown"
+  ],
+  "author": "elitalpa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/elitalpa/creanote/issues"
+  },
+  "homepage": "https://github.com/elitalpa/creanote#readme",
+  "devDependencies": {
+    "@changesets/changelog-github": "^0.5.0",
+    "@changesets/cli": "^2.27.10",
+    "@types/node": "^20.17.7",
+    "prettier": "^3.3.3",
+    "rimraf": "^6.0.1",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.5"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "handlebars": "^4.7.8"
+  }
+}
