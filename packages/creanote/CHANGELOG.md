@@ -1,5 +1,13 @@
 # creanote
 
+## 0.2.4
+
+### Patch Changes
+
+- [`d0c27d5`](https://github.com/elitalpa/creanote/commit/d0c27d54bd6cf9dc843cd25cbe1a677368496247) Thanks [@elitalpa](https://github.com/elitalpa)! - fixing deps
+
+- [`b99d996`](https://github.com/elitalpa/creanote/commit/b99d9965babe28953d3f2c9df19820d5164681c1) Thanks [@elitalpa](https://github.com/elitalpa)! - updating deps
+
 ## 0.2.3
 
 ### Patch Changes
