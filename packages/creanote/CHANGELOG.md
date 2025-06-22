@@ -1,5 +1,11 @@
 # creanote
 
+## 0.2.5
+
+### Patch Changes
+
+- [#8](https://github.com/elitalpa/creanote/pull/8) [`d0a1d83`](https://github.com/elitalpa/creanote/commit/d0a1d8353640947a0f2c49e5b2e73108d106d78b) Thanks [@elitalpa](https://github.com/elitalpa)! - fixing week number for daily notes by using the date-fns library as it's more reliable
+
 ## 0.2.4
 
 ### Patch Changes
