@@ -9,10 +9,12 @@ interface Config {
     templatePath: {
       daily: string;
       note: string;
+      excalidraw: string;
     };
     addPath: {
       daily: string;
       note: string;
+      excalidraw: string;
     };
   };
 }

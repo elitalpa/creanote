@@ -2,6 +2,7 @@ import { readFileSync, existsSync } from "fs";
 import { join } from "path";
 import { addDaily } from "./add/daily";
 import { addNote } from "./add/note";
+import { addExcalidraw } from "./add/excalidraw";
 
 export function add(
   type: string,
@@ -24,6 +25,9 @@ export function add(
       break;
     case "note":
       addNote(config, options.date, options.filename);
+      break;
+    case "excalidraw":
+      addExcalidraw(config, options.date, options.filename);
       break;
     default:
       console.error(`Invalid type: ${type}`);

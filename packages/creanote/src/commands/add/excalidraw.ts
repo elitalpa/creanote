@@ -1,0 +1,58 @@
+import fs from "fs";
+import path from "path";
+import { getWeekNumber } from "../utils";
+import { Config } from "@/types";
+
+export function addExcalidraw(
+  config: Config,
+  date?: string,
+  filename?: string
+) {
+  const today = date ? new Date(date) : new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
+  const week = String(getWeekNumber(today)).padStart(2, "0");
+
+  console.log(filename);
+  const fileName = filename
+    ? `${filename}.excalidraw`
+    : `${year}-${month}-${day}.excalidraw`;
+
+  const dailyFolder = path.join(
+    process.cwd(),
+    config.settings.addPath.excalidraw,
+    `${year}`,
+    `${year}-${month}`,
+    `week-${week}`,
+    fileName
+  );
+
+  const folderPath = path.dirname(dailyFolder);
+  if (!fs.existsSync(folderPath)) {
+    fs.mkdirSync(folderPath, { recursive: true });
+  }
+
+  if (fs.existsSync(dailyFolder)) {
+    console.log(
+      `The file "${dailyFolder}" already exists. Note was not created.`
+    );
+    return;
+  }
+
+  const templatePath = path.resolve(
+    process.cwd(),
+    config.settings.templatePath.excalidraw
+  );
+
+  let templateContent = "";
+  try {
+    templateContent = fs.readFileSync(templatePath, "utf-8");
+  } catch (error) {
+    console.error("Error reading the template file:", error);
+    return;
+  }
+
+  fs.writeFileSync(dailyFolder, templateContent);
+  console.log(`Excalidraw file added: ${dailyFolder}`);
+}

@@ -34,3 +34,5 @@ export const noteTemplate = `# {{date}} note
 
 <!-- created_at: {{created_at}} -->
 `;
+
+export const excalidrawTemplate = ``;

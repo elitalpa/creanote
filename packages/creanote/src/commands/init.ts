@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { dailyTemplate, noteTemplate } from "./templates";
+import { dailyTemplate, noteTemplate, excalidrawTemplate } from "./templates";
 
 export function init() {
   const initDirectory = path.join(process.cwd(), ".creanote");
@@ -20,6 +20,10 @@ export function init() {
     path.join(initDirectory, "templates", "note.md"),
     noteTemplate
   );
+  fs.writeFileSync(
+    path.join(initDirectory, "templates", "excalidraw.excalidraw"),
+    excalidrawTemplate
+  );
 
   const config = {
     info: {
@@ -32,10 +36,12 @@ export function init() {
       templatePath: {
         daily: ".creanote/templates/daily.md",
         note: ".creanote/templates/note.md",
+        excalidraw: ".creanote/templates/excalidraw.excalidraw",
       },
       addPath: {
         daily: "./daily",
         note: "./",
+        excalidraw: "./daily",
       },
     },
   };
