@@ -6,7 +6,8 @@ import { Config } from "@/types";
 export function addExcalidraw(
   config: Config,
   date?: string,
-  filename?: string
+  filename?: string,
+  extension?: string
 ) {
   const today = date ? new Date(date) : new Date();
   const year = today.getFullYear();
@@ -16,8 +17,8 @@ export function addExcalidraw(
 
   console.log(filename);
   const fileName = filename
-    ? `${filename}.excalidraw`
-    : `${year}-${month}-${day}.excalidraw`;
+    ? `${filename}${extension ? `.${extension}` : ".excalidraw"}`
+    : `${year}-${month}-${day}${extension ? `.${extension}` : ".excalidraw"}`;
 
   const dailyFolder = path.join(
     process.cwd(),

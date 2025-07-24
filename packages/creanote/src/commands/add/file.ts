@@ -1,9 +1,8 @@
 import fs from "fs";
 import path from "path";
-import { replaceTemplateVariables } from "../utils";
 import { Config } from "@/types";
 
-export function addNote(
+export function addFile(
   config: Config,
   date?: string,
   filename?: string,
@@ -19,8 +18,8 @@ export function addNote(
   const noteFile = path.join(
     noteFolder,
     filename
-      ? `${filename}${extension ? `.${extension}` : ".md"}`
-      : `${dateStr}${extension ? `.${extension}` : ".md"}`
+      ? `${filename}${extension ? `.${extension}` : ""}`
+      : `${dateStr}${extension ? `.${extension}` : ""}`
   );
 
   if (!fs.existsSync(noteFolder)) {
@@ -28,31 +27,11 @@ export function addNote(
   }
 
   if (fs.existsSync(noteFile)) {
-    console.log(
-      `The note for today (${noteFile}) already exists. Note was not created.`
-    );
+    console.log(`The file (${noteFile}) already exists. File was not created.`);
     return;
   }
 
-  const templatePath = path.resolve(
-    process.cwd(),
-    config.settings.templatePath.note
-  );
-
-  let templateContent = "";
-  try {
-    templateContent = fs.readFileSync(templatePath, "utf-8");
-  } catch (error) {
-    console.error("Error reading the template file:", error);
-    return;
-  }
-
-  const content = replaceTemplateVariables(templateContent, {
-    date: dateStr,
-    created_at: today.toISOString(),
-    year: year.toString(),
-    month: month.toString(),
-  });
+  const content = "";
 
   fs.writeFileSync(noteFile, content);
   console.log(`Note added: ${noteFile}`);

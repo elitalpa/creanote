@@ -3,10 +3,11 @@ import { join } from "path";
 import { addDaily } from "./add/daily";
 import { addNote } from "./add/note";
 import { addExcalidraw } from "./add/excalidraw";
+import { addFile } from "./add/file";
 
 export function add(
   type: string,
-  options: { date?: string; filename?: string }
+  options: { date?: string; filename?: string; extension?: string }
 ) {
   const configPath = join(process.cwd(), ".creanote", "config.json");
 
@@ -21,13 +22,16 @@ export function add(
 
   switch (type) {
     case "daily":
-      addDaily(config, options.date, options.filename);
+      addDaily(config, options.date, options.filename, options.extension);
       break;
     case "note":
-      addNote(config, options.date, options.filename);
+      addNote(config, options.date, options.filename, options.extension);
       break;
     case "excalidraw":
-      addExcalidraw(config, options.date, options.filename);
+      addExcalidraw(config, options.date, options.filename, options.extension);
+      break;
+    case "file":
+      addFile(config, options.date, options.filename, options.extension);
       break;
     default:
       console.error(`Invalid type: ${type}`);

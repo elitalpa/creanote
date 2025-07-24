@@ -42,8 +42,9 @@ async function main() {
   program
     .command("add <type>")
     .description("Add a new note")
-    .option("--date <date>", "Specify a date")
-    .option("--filename <filename>", "Specify a filename")
+    .option("-d, --date <date>", "Specify a date")
+    .option("-f, --filename <filename>", "Specify a filename")
+    .option("-e, --extension <extension>", "Specify a file extension (md, json, html, etc.)")
     .action((type, options) => {
       add(type, options);
     });

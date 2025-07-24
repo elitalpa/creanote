@@ -4,14 +4,21 @@ import { getWeekNumber } from "../utils";
 import { replaceTemplateVariables } from "../utils";
 import { Config } from "@/types";
 
-export function addDaily(config: Config, date?: string, filename?: string) {
+export function addDaily(
+  config: Config,
+  date?: string,
+  filename?: string,
+  extension?: string
+) {
   const today = date ? new Date(date) : new Date();
   const year = today.getFullYear();
   const month = String(today.getMonth() + 1).padStart(2, "0");
   const day = String(today.getDate()).padStart(2, "0");
   const week = String(getWeekNumber(today)).padStart(2, "0");
 
-  const fileName = filename ? `${filename}.md` : `${year}-${month}-${day}.md`;
+  const fileName = filename
+    ? `${filename}${extension ? `.${extension}` : ".md"}`
+    : `${year}-${month}-${day}${extension ? `.${extension}` : ".md"}`;
 
   const dailyFolder = path.join(
     process.cwd(),
