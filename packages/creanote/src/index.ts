@@ -15,9 +15,9 @@ async function checkForUpdates(): Promise<string> {
     const latestVersion = data.version;
 
     if (latestVersion !== packageJson.version) {
-      return `new version available: ${latestVersion}`;
+      return `new version available: ${latestVersion}\nif using npm, run "npm i -g creanote@latest" to update`;
     } else {
-      return "up to date";
+      return "current version is up to date";
     }
   } catch (error) {
     return "couldn't check for updates";
@@ -29,7 +29,7 @@ async function main() {
     .name("creanote")
     .description("CLI tool for your notes")
     .version(
-      `creanote ${packageJson.version}\n${await checkForUpdates()}`,
+      `creanote ${packageJson.version}\n\n${await checkForUpdates()}`,
       "-v, --version",
       "Display the version number"
     );
