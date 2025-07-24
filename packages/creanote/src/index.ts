@@ -8,12 +8,28 @@ import { add } from "./commands/add";
 process.on("SIGINT", () => process.exit(0));
 process.on("SIGTERM", () => process.exit(0));
 
+async function checkForUpdates(): Promise<string> {
+  try {
+    const response = await fetch(`https://registry.npmjs.org/creanote/latest`);
+    const data = await response.json();
+    const latestVersion = data.version;
+
+    if (latestVersion !== packageJson.version) {
+      return `new version available: ${latestVersion}`;
+    } else {
+      return "up to date";
+    }
+  } catch (error) {
+    return "couldn't check for updates";
+  }
+}
+
 async function main() {
   const program = new Command()
     .name("creanote")
     .description("CLI tool for your notes")
     .version(
-      `creanote ${packageJson.version}`,
+      `creanote ${packageJson.version}\n${await checkForUpdates()}`,
       "-v, --version",
       "Display the version number"
     );
