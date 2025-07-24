@@ -42,7 +42,8 @@ async function main() {
   program
     .command("add <type>")
     .description("Add a new note")
-    .option("--date <date>", "Specify a date for the daily note")
+    .option("--date <date>", "Specify a date")
+    .option("--filename <filename>", "Specify a filename")
     .action((type, options) => {
       add(type, options);
     });

@@ -3,15 +3,18 @@ import path from "path";
 import { replaceTemplateVariables } from "../utils";
 import { Config } from "@/types";
 
-export function addNote(config: Config) {
-  const today = new Date();
+export function addNote(config: Config, date?: string, filename?: string) {
+  const today = date ? new Date(date) : new Date();
   const year = today.getFullYear();
   const month = String(today.getMonth() + 1).padStart(2, "0");
   const day = String(today.getDate()).padStart(2, "0");
   const dateStr = `${year}-${month}-${day}`;
 
   const noteFolder = path.join(process.cwd(), config.settings.addPath.note);
-  const noteFile = path.join(noteFolder, `${dateStr}.md`);
+  const noteFile = path.join(
+    noteFolder,
+    filename ? `${filename}.md` : `${dateStr}.md`
+  );
 
   if (!fs.existsSync(noteFolder)) {
     fs.mkdirSync(noteFolder, { recursive: true });

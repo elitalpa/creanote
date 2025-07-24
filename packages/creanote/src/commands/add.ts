@@ -3,7 +3,10 @@ import { join } from "path";
 import { addDaily } from "./add/daily";
 import { addNote } from "./add/note";
 
-export function add(type: string, options: { date?: string }) {
+export function add(
+  type: string,
+  options: { date?: string; filename?: string }
+) {
   const configPath = join(process.cwd(), ".creanote", "config.json");
 
   if (!existsSync(configPath)) {
@@ -17,10 +20,10 @@ export function add(type: string, options: { date?: string }) {
 
   switch (type) {
     case "daily":
-      addDaily(config, options.date);
+      addDaily(config, options.date, options.filename);
       break;
     case "note":
-      addNote(config);
+      addNote(config, options.date, options.filename);
       break;
     default:
       console.error(`Invalid type: ${type}`);
