@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { replaceTemplateVariables } from "../utils";
+import { replaceTemplateVariables, getTemplateContent } from "../utils";
 import { Config } from "@/types";
 
 export function addNote(
@@ -39,13 +39,7 @@ export function addNote(
     config.settings.templatePath.note
   );
 
-  let templateContent = "";
-  try {
-    templateContent = fs.readFileSync(templatePath, "utf-8");
-  } catch (error) {
-    console.error("Error reading the template file:", error);
-    return;
-  }
+  const templateContent = getTemplateContent(templatePath, "note");
 
   const content = replaceTemplateVariables(templateContent, {
     date: dateStr,

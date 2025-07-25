@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { getWeekNumber } from "../utils";
+import { getWeekNumber, getTemplateContent } from "../utils";
 import { Config } from "@/types";
 
 export function addExcalidraw(
@@ -15,7 +15,6 @@ export function addExcalidraw(
   const day = String(today.getDate()).padStart(2, "0");
   const week = String(getWeekNumber(today)).padStart(2, "0");
 
-  console.log(filename);
   const fileName = filename
     ? `${filename}${extension ? `.${extension}` : ".excalidraw"}`
     : `${year}-${month}-${day}${extension ? `.${extension}` : ".excalidraw"}`;
@@ -46,13 +45,7 @@ export function addExcalidraw(
     config.settings.templatePath.excalidraw
   );
 
-  let templateContent = "";
-  try {
-    templateContent = fs.readFileSync(templatePath, "utf-8");
-  } catch (error) {
-    console.error("Error reading the template file:", error);
-    return;
-  }
+  const templateContent = getTemplateContent(templatePath, "excalidraw");
 
   fs.writeFileSync(dailyFolder, templateContent);
   console.log(`Excalidraw file added: ${dailyFolder}`);

@@ -1,5 +1,8 @@
 import fs from "fs";
 import { getISOWeek } from "date-fns";
+import path from "path";
+
+import { dailyTemplate, noteTemplate, excalidrawTemplate } from "./templates";
 
 export function copyTemplate(templatePath: string, targetPath: string) {
   if (!fs.existsSync(templatePath)) {
@@ -49,6 +52,43 @@ export function getWeekNumber(date: Date): number {
 
 //   return weekNum;
 // }
+
+export function getTemplateContent(
+  templatePath: string,
+  templateType: string
+): string {
+  try {
+    return fs.readFileSync(templatePath, "utf-8");
+  } catch (error) {
+    // If template file is missing, use default template and create the file
+    console.warn(
+      "\x1b[33mWarning: Template file not found, creating and using default template.\x1b[0m"
+    );
+
+    // find corresponding default template
+    let defaultTemplate = "";
+    switch (templateType) {
+      case "daily":
+        defaultTemplate = dailyTemplate;
+        break;
+      case "note":
+        defaultTemplate = noteTemplate;
+        break;
+      case "excalidraw":
+        defaultTemplate = excalidrawTemplate;
+        break;
+      default:
+        defaultTemplate = "";
+    }
+    // Ensure parent directory exists
+    const dir = path.dirname(templatePath);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+    fs.writeFileSync(templatePath, defaultTemplate);
+    return defaultTemplate;
+  }
+}
 
 export function replaceTemplateVariables(
   template: string,

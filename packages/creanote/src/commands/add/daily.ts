@@ -1,7 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { getWeekNumber } from "../utils";
-import { replaceTemplateVariables } from "../utils";
+import { getWeekNumber, replaceTemplateVariables, getTemplateContent } from "../utils";
 import { Config } from "@/types";
 
 export function addDaily(
@@ -46,13 +45,7 @@ export function addDaily(
     config.settings.templatePath.daily
   );
 
-  let templateContent = "";
-  try {
-    templateContent = fs.readFileSync(templatePath, "utf-8");
-  } catch (error) {
-    console.error("Error reading the template file:", error);
-    return;
-  }
+  const templateContent = getTemplateContent(templatePath, "daily");
 
   const content = replaceTemplateVariables(templateContent, {
     date: `${year}-${month}-${day}`,
