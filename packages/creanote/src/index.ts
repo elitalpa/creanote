@@ -5,6 +5,7 @@ import packageJson from "../package.json" assert { type: "json" };
 import { init } from "@/commands/init";
 import { add } from "@/commands/add";
 import { sync } from "@/commands/sync";
+import { ai } from "@/commands/ai";
 
 process.on("SIGINT", () => process.exit(0));
 process.on("SIGTERM", () => process.exit(0));
@@ -62,6 +63,13 @@ async function main() {
       await sync();
     });
 
+  program
+    .command("ai <subcommand> [question]")
+    .description("AI-powered features")
+    .action(async (subcommand, question) => {
+      await ai(subcommand, { question });
+    });
+
   program.addHelpText(
     "after",
     `
@@ -73,6 +81,11 @@ Example usage:
   $ creanote add note   // Add a regular note
 
   $ creanote sync      // Sync your notes with git
+
+  $ creanote ai setup  // Set up AI features
+  $ creanote ai ask "What is TypeScript?"  // Ask a question
+  $ creanote ai chat   // Start a chat session
+  $ creanote ai add    // Create an AI-generated note
 
   $ creanote -v        // Display version
   $ creanote -h        // Display help

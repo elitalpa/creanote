@@ -25,6 +25,30 @@ interface Config {
         url: string;
       };
     };
+    ai?: {
+      llm: {
+        modelName: string;
+        provider: {
+          type: string;
+          apiKeyPath: string;
+          apiUrl: string;
+        };
+        prompt: {
+          ask: {
+            system: string;
+            user: string;
+          };
+          chat: {
+            system: string;
+            user: string;
+          };
+          add: {
+            system: string;
+            user: string;
+          };
+        };
+      };
+    };
   };
 }
 

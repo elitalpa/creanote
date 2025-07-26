@@ -6,6 +6,7 @@ import {
   excalidrawTemplate,
 } from "@/commands/templates";
 import { setupSyncFromInit } from "@/commands/sync";
+import { setupAI } from "@/commands/ai/setup";
 import { question, closeReadline } from "@/utils";
 
 export async function init() {
@@ -66,6 +67,15 @@ export async function init() {
   );
   if (setupSync.toLowerCase() === "y") {
     await setupSyncFromInit();
+  }
+
+  // Ask about AI setup
+  console.log();
+  const setupAIOption = await question(
+    "Would you like to set up AI ? (y/n): "
+  );
+  if (setupAIOption.toLowerCase() === "y") {
+    await setupAI();
   }
 
   closeReadline();
