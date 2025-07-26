@@ -1,6 +1,10 @@
 import fs from "fs";
 import path from "path";
-import { getWeekNumber, replaceTemplateVariables, getTemplateContent } from "../utils";
+import {
+  getWeekNumber,
+  replaceTemplateVariables,
+  getTemplateContent,
+} from "@/utils";
 import { Config } from "@/types";
 
 export function addDaily(

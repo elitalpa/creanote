@@ -2,8 +2,9 @@
 
 import { Command } from "commander";
 import packageJson from "../package.json" assert { type: "json" };
-import { init } from "./commands/init";
-import { add } from "./commands/add";
+import { init } from "@/commands/init";
+import { add } from "@/commands/add";
+import { sync } from "@/commands/sync";
 
 process.on("SIGINT", () => process.exit(0));
 process.on("SIGTERM", () => process.exit(0));
@@ -37,16 +38,28 @@ async function main() {
   program
     .command("init")
     .description("Initialize creanote in the current directory")
-    .action(init);
+    .action(async () => {
+      await init();
+    });
 
   program
     .command("add <type>")
     .description("Add a new note")
     .option("-d, --date <date>", "Specify a date")
     .option("-f, --filename <filename>", "Specify a filename")
-    .option("-e, --extension <extension>", "Specify a file extension (md, json, html, etc.)")
+    .option(
+      "-e, --extension <extension>",
+      "Specify a file extension (md, json, html, etc.)"
+    )
     .action((type, options) => {
       add(type, options);
+    });
+
+  program
+    .command("sync")
+    .description("Sync your notes with git")
+    .action(async () => {
+      await sync();
     });
 
   program.addHelpText(
@@ -58,6 +71,8 @@ Example usage:
   $ creanote add daily  // Add a daily note
   $ creanote add daily --date "2 dec 2024"  // Add a daily note for a specific date
   $ creanote add note   // Add a regular note
+
+  $ creanote sync      // Sync your notes with git
 
   $ creanote -v        // Display version
   $ creanote -h        // Display help

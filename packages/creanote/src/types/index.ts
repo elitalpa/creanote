@@ -16,6 +16,15 @@ interface Config {
       note: string;
       excalidraw: string;
     };
+    sync?: {
+      user: {
+        name: string;
+        email: string;
+      };
+      remote: {
+        url: string;
+      };
+    };
   };
 }
 

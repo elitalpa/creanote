@@ -1,8 +1,14 @@
 import fs from "fs";
 import path from "path";
-import { dailyTemplate, noteTemplate, excalidrawTemplate } from "./templates";
+import {
+  dailyTemplate,
+  noteTemplate,
+  excalidrawTemplate,
+} from "@/commands/templates";
+import { setupSyncFromInit } from "@/commands/sync";
+import { question, closeReadline } from "@/utils";
 
-export function init() {
+export async function init() {
   const initDirectory = path.join(process.cwd(), ".creanote");
 
   if (fs.existsSync(initDirectory)) {
@@ -52,4 +58,15 @@ export function init() {
   );
 
   console.log("Initialization complete.");
+
+  // Ask about sync setup
+  console.log();
+  const setupSync = await question(
+    "Would you like to set up sync for your notes? (y/n): "
+  );
+  if (setupSync.toLowerCase() === "y") {
+    await setupSyncFromInit();
+  }
+
+  closeReadline();
 }

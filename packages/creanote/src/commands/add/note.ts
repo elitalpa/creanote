@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { replaceTemplateVariables, getTemplateContent } from "../utils";
+import { replaceTemplateVariables, getTemplateContent } from "@/utils";
 import { Config } from "@/types";
 
 export function addNote(

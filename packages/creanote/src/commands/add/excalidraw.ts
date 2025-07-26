@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { getWeekNumber, getTemplateContent } from "../utils";
+import { getWeekNumber, getTemplateContent } from "@/utils";
 import { Config } from "@/types";
 
 export function addExcalidraw(
