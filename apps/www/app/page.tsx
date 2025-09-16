@@ -247,9 +247,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <InstallationSection />
-
-          <div className="mt-8 p-6 bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 rounded-lg">
+          <div className="mb-8 p-6 bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 rounded-lg">
             <h4 className="font-semibold text-blue-900 dark:text-blue-100 mb-2">
               Requirements
             </h4>
@@ -265,6 +263,9 @@ export default function HomePage() {
               </Link>
             </p>
           </div>
+
+          <InstallationSection />
+
         </div>
       </section>
 
