@@ -69,11 +69,11 @@ export function UsageSection() {
             <div className="text-green-400">{initCommand}</div>
           </CodeBlock>
           <p className="text-slate-600 dark:text-slate-400 mt-4">
-            Creates a{" "}
+            {"Creates a "}
             <code className="bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded text-sm">
-              '.creanote'
-            </code>{" "}
-            directory with configuration and templates.
+              {'.creanote/'}
+            </code>
+            {" directory with configuration and templates."}
           </p>
         </CardContent>
       </Card>
@@ -92,11 +92,11 @@ export function UsageSection() {
             <div className="text-green-400">{dailyCommand}</div>
           </CodeBlock>
           <p className="text-slate-600 dark:text-slate-400 mt-4">
-            Creates notes in{" "}
+            {"Creates notes in "}
             <code className="bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded text-sm">
-              daily/2024/2024-12/week-51/2024-12-20.md
-            </code>{" "}
-            structure.
+              {'daily/2024/2024-12/week-51/2024-12-20.md'}
+            </code>
+            {" structure."}
           </p>
         </CardContent>
       </Card>
@@ -115,11 +115,11 @@ export function UsageSection() {
             <div className="text-green-400">{noteCommand}</div>
           </CodeBlock>
           <p className="text-slate-600 dark:text-slate-400 mt-4">
-            Creates notes as{" "}
+            {"Creates notes as "}
             <code className="bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded text-sm">
-              2024-12-20.md
-            </code>{" "}
-            in your project root directory.
+              {'2024-12-20.md'}
+            </code>
+            {" in your project root directory."}
           </p>
         </CardContent>
       </Card>
