@@ -84,8 +84,7 @@ export default function HomePage() {
           <h2 className="text-5xl md:text-6xl font-bold text-slate-900 dark:text-slate-100 mb-6 leading-tight">
             Easily create
             <span className="text-slate-600 dark:text-slate-400">
-              {" "}
-              organized notes
+              {" organized notes"}
             </span>
           </h2>
           <p className="text-xl text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto leading-relaxed">
@@ -252,7 +251,7 @@ export default function HomePage() {
               Requirements
             </h4>
             <p className="text-blue-800 dark:text-blue-200">
-              Node.js v20 LTS or higher is required. Download from{" "}
+              {"Node.js v20 LTS or higher is required. Download from "}
               <Link
                 href="https://nodejs.org/en/download/prebuilt-binaries"
                 className="underline hover:no-underline"
@@ -333,14 +332,14 @@ export default function HomePage() {
             </span>
           </div>
           <p className="text-slate-600 dark:text-slate-400 mb-4">
-            Built by{" "}
+            {"Built by "}
             <Link
               href="https://eli-talpa.com"
               className="text-slate-900 dark:text-slate-100 hover:underline"
               target="_blank"
               rel="noopener noreferrer"
             >
-              @elitalpa
+              {"@elitalpa"}
             </Link>
           </p>
           <p className="text-sm text-slate-500 dark:text-slate-500">
