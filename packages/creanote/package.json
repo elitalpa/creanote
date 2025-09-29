@@ -61,6 +61,7 @@
     "vitest": "^3.2.4"
   },
   "dependencies": {
+    "@inquirer/prompts": "^7.8.6",
     "commander": "^12.1.0",
     "handlebars": "^4.7.8",
     "simple-git": "^3.28.0"
