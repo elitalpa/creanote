@@ -207,6 +207,9 @@ importers:
       handlebars:
         specifier: ^4.7.8
         version: 4.7.8
+      openai:
+        specifier: ^5.23.1
+        version: 5.23.1
       simple-git:
         specifier: ^3.28.0
         version: 3.28.0
@@ -4318,6 +4321,19 @@ packages:
     dependencies:
       wrappy: 1.0.2
     dev: true
+
+  /openai@5.23.1:
+    resolution: {integrity: sha512-APxMtm5mln4jhKhAr0d5zP9lNsClx4QwJtg8RUvYSSyxYCTHLNJnLEcSHbJ6t0ori8Pbr9HZGfcPJ7LEy73rvQ==}
+    hasBin: true
+    peerDependencies:
+      ws: ^8.18.0
+      zod: ^3.23.8
+    peerDependenciesMeta:
+      ws:
+        optional: true
+      zod:
+        optional: true
+    dev: false
 
   /optionator@0.9.4:
     resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
