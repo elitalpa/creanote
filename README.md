@@ -2,6 +2,12 @@
 
 Easily create organized notes.
 
+## Links
+
+- Website: [creanote.eliapps.com](https://creanote.eliapps.com/)
+- Package on NPM: [npmjs.com/package/creanote](https://www.npmjs.com/package/creanote)
+- Source Code on GitHub: [github.com/elitalpa/creanote](https://github.com/elitalpa/creanote#readme)
+
 ## About
 
 Storing notes in a plain text format like markdown ensures simplicity, portability, and long-term access without the risk of lock-in. It’s flexible, supported by many tools, and easy to move across systems.
