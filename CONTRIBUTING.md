@@ -15,22 +15,30 @@ If you would like to contribute to the code, you will first need to [fork this r
 
 ### Development environment
 
+This project is set up as a monorepo with the CLI in `packages/creanote` and the website in `apps/www`.
+
 Once cloned, you can install the dependencies.
 
 ```sh
-npm install
+pnpm install
 ```
 
 Run the cli.
 
 ```sh
-npm run dev
+pnpm --filter=creanote build --watch
 ```
 
-And try the cli commands with `npm run start -- ` followed by the commands and options like :
+And try the cli commands with `pnpm --filter=creanote start` followed by the commands and options like :
 
 ```sh
-npm run start -- --help
+pnpm --filter=creanote start --help
+```
+
+For the website:
+
+```sh
+pnpm --filter=www dev
 ```
 
 ### Before Committing
@@ -38,26 +46,26 @@ npm run start -- --help
 Before creating a commit, please make sure your code is formatted correctly by running :
 
 ```sh
-npm run format:check
+pnpm --filter=creanote run format:check
 ```
 
 and fix its formatting with :
 
 ```sh
-npm run format:fix
+pnpm --filter=creanote run format:fix
 ```
 
 You can also run the ci command to make sure everything is ok (code format, linting, types, tests, etc..)
 
 ```sh
-npm run ci
+pnpm --filter=creanote run ci
 ```
 
 ### Tests
 
 [Vitest](https://vitest.dev/) is used for testing.
 
-Please make sure all tests are passing (using `npm run test`).  
+Please make sure all tests are passing (using `pnpm run test`).  
 If your changes might need tests, please also make sure to add them.
 
 ### Commit Conventions
