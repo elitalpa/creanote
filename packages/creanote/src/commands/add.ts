@@ -1,29 +1,26 @@
-import { readFileSync, existsSync } from "fs";
-import { join } from "path";
-import { addDaily } from "./add/daily";
-import { addNote } from "./add/note";
+import { loadConfig, log, addFromTemplate } from "@/utils";
 
-export function add(type: string, options: { date?: string }) {
-  const configPath = join(process.cwd(), ".creanote", "config.json");
+export function add(
+  type: string,
+  options: { date?: string; filename?: string }
+) {
+  const config = loadConfig();
 
-  if (!existsSync(configPath)) {
-    console.error(
-      `Config file (.creanote/config.json) not found. \nTo initialize, run \`creanote init\` or make sure you're in the correct directory.`
-    );
+  if (!config) {
+    log.error("Invalid config. Run 'creanote init' to reset.");
     process.exit(1);
   }
 
-  const config = JSON.parse(readFileSync(configPath, "utf-8"));
+  // Find template by name
+  const template = config.settings.templates.find((t) => t.name === type);
 
-  switch (type) {
-    case "daily":
-      addDaily(config, options.date);
-      break;
-    case "note":
-      addNote(config);
-      break;
-    default:
-      console.error(`Invalid type: ${type}`);
-      process.exit(1);
+  if (!template) {
+    const availableTypes = config.settings.templates
+      .map((t) => t.name)
+      .join(", ");
+    log.error(`Invalid type: ${type}. Available types: ${availableTypes}`);
+    process.exit(1);
   }
+
+  addFromTemplate(config, template, options.date, options.filename);
 }
