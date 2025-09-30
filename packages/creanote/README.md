@@ -62,8 +62,9 @@ This will create a hidden `.creanote` directory with the following structure :
 .creanote/
 ├── config.json   # info and settings for creanote
 └── templates/
-    ├── daily.md  # default template for daily notes
-    └── note.md   # default template for regular notes
+    ├── daily.md           # default template for daily notes
+    ├── note.md            # default template for regular notes
+    └── excalidraw.excalidraw  # default template for drawings
 ```
 
 ### add
@@ -73,7 +74,36 @@ Use the `add` command to add a daily note or a regular note.
 ```sh
 creanote add note # will add a file as 2024-12-02.md
 creanote add daily # will add a file in daily/2024/2024-12/week-49/2024-12-02.md
+creanote add excalidraw # will add an Excalidraw drawing file
 ```
+
+You can also specify a custom filename:
+
+```sh
+creanote add note --filename "my-custom-note"
+```
+
+### ai
+
+Use AI-powered features to generate notes, ask questions, or chat interactively.
+
+```sh
+creanote ai ask "What is a note?"  # Ask a question and get a response
+creanote ai chat                       # Start an interactive chat session
+creanote ai add note "Project ideas"  # Generate an AI note about a topic
+```
+
+The AI features require configuration during `creanote init` or can be set up later by running `creanote init` again.
+
+### sync
+
+Synchronize your notes with a Git repository to keep them backed up and synced across devices.
+
+```sh
+creanote sync  # Pull changes, show local changes, and push to remote
+```
+
+The sync feature uses Git and requires configuration during `creanote init`.
 
 ### daily notes
 
@@ -109,22 +139,36 @@ daily
 
 ### config
 
-You can change the paths of the templates used and where the notes are created in the `.creanote/config.json` file :
+Settings can be changed and customised in the `.creanote/config.json` file :
 
 ```json
 {
-  "info": {
-    ...
-  },
+  "info": {},
   "settings": {
-    "templatePath": {
-      "daily": ".creanote/templates/daily.md",
-      "note": ".creanote/templates/note.md"
-    },
-    "addPath": {
-      "daily": "./notenv-v/daily",
-      "note": "./notenv-v"
-    }
+    "basePath": "./",
+    "templates": [
+      {
+        "name": "daily",
+        "description": "Daily note",
+        "path": ".creanote/templates/daily.md",
+        "ext": "md",
+        "target": "daily/{{year}}/{{year}}-{{month}}/week-{{week}}/{{year}}-{{month}}-{{day}}.{{ext}}"
+      },
+      {
+        "name": "note",
+        "description": "Regular note",
+        "path": ".creanote/templates/note.md",
+        "ext": "md",
+        "target": "{{year}}-{{month}}-{{day}}.{{ext}}"
+      },
+      {
+        "name": "excalidraw",
+        "description": "Excalidraw drawing",
+        "path": ".creanote/templates/excalidraw.excalidraw",
+        "ext": "excalidraw",
+        "target": "draw/{{year}}-{{month}}-{{day}}.{{ext}}"
+      }
+    ]
   }
 }
 ```
