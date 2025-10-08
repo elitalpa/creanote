@@ -24,6 +24,20 @@ export function replaceTemplateVariables(
   });
 }
 
+export function buildPathTemplate(
+  templateTarget: string,
+  filename: string | undefined,
+  extension: string
+): string {
+  return filename
+    ? templateTarget
+        .split("/")
+        .slice(0, -1)
+        .concat(`${filename}.${extension}`)
+        .join("/")
+    : templateTarget;
+}
+
 export function addFromTemplate(
   config: Config,
   template: Template,
@@ -40,24 +54,19 @@ export function addFromTemplate(
   // Use custom extension if provided, otherwise use template extension
   const finalExtension = extension || template.ext;
 
-  // Replace template variables in target path
-  let targetPath = replaceTemplateVariables(template.target, {
+  // Build and replace template variables in target path
+  const pathTemplate = buildPathTemplate(
+    template.target,
+    filename,
+    finalExtension
+  );
+  const targetPath = replaceTemplateVariables(pathTemplate, {
     year: year.toString(),
     month: month,
     day: day,
     week: week,
     ext: finalExtension,
   });
-
-  // Use custom filename if provided
-  if (filename) {
-    const pathParts = targetPath.split("/");
-
-    // Replace target filename with the provided filename and add the extension
-    pathParts[pathParts.length - 1] = `${filename}.${finalExtension}`;
-
-    targetPath = pathParts.join("/");
-  }
 
   // Build full file path
   const fullPath = path.join(

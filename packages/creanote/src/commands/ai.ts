@@ -8,6 +8,7 @@ import {
   streamLLM,
   hasAIConfigured,
   replaceTemplateVariables,
+  buildPathTemplate,
   // createOpenAIClient,
   generateUniqueFilename,
 } from "@/utils";
@@ -183,7 +184,13 @@ export async function addWithAI(
   // Use custom extension if provided, otherwise use template extension
   const finalExtension = options.extension || template.ext;
 
-  let targetPath = replaceTemplateVariables(template.target, {
+  // Build and replace template variables in target path
+  const pathTemplate = buildPathTemplate(
+    template.target,
+    options.filename,
+    finalExtension
+  );
+  let targetPath = replaceTemplateVariables(pathTemplate, {
     year: year.toString(),
     month: month,
     day: day,
@@ -191,15 +198,8 @@ export async function addWithAI(
     ext: finalExtension,
   });
 
-  // Generate unique filename based on topic or use custom filename
-  if (options.filename) {
-    const pathParts = targetPath.split("/");
-
-    // Replace target filename with the provided filename and add the extension
-    pathParts[pathParts.length - 1] = `${options.filename}.${finalExtension}`;
-
-    targetPath = pathParts.join("/");
-  } else {
+  // Generate unique filename from topic if no custom filename
+  if (!options.filename) {
     // Generate filename from topic
     const pathParts = targetPath.split("/");
     const folderPath = pathParts.slice(0, -1).join("/");
