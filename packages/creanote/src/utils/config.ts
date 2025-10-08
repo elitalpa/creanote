@@ -141,10 +141,19 @@ export function migrateLegacyConfig(legacyConfig: LegacyConfig): Config {
 }
 
 export function addVersionIfMissing(config: Config): Config {
-  if (!config.info.version) {
+  const currentVersion = config.info.version;
+  const packageVersion = packageJson.version;
+
+  if (!currentVersion) {
     log.info("Adding version to config...");
-    config.info.version = packageJson.version;
+    config.info.version = packageVersion;
+  } else if (currentVersion !== packageVersion) {
+    log.info(
+      `Updating config version from ${currentVersion} to ${packageVersion}...`
+    );
+    config.info.version = packageVersion;
   }
+
   return config;
 }
 
@@ -166,14 +175,14 @@ export function loadConfig(): Config | null {
     }
 
     if (isValidConfig(config)) {
-      // Add version if missing
+      // Add version if missing or update if outdated
       const originalVersion = config.info.version;
       config = addVersionIfMissing(config);
 
-      // Save config if version was added
-      if (!originalVersion && config.info.version) {
+      // Save config if version was added or updated
+      if (originalVersion !== config.info.version) {
         saveConfig(config);
-        log.success("Version added to config");
+        log.success("Config version updated");
       }
 
       return config;
