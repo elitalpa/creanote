@@ -1,5 +1,15 @@
 # creanote
 
+## 0.3.1
+
+### Patch Changes
+
+- [#30](https://github.com/elitalpa/creanote/pull/30) [`ef0c8af`](https://github.com/elitalpa/creanote/commit/ef0c8af307d8e5eb96600c560f4f05b553429eb5) Thanks [@elitalpa](https://github.com/elitalpa)! - fixed `--filename` option that was replacing the whole filename, including the extension
+
+- [#30](https://github.com/elitalpa/creanote/pull/30) [`ef0c8af`](https://github.com/elitalpa/creanote/commit/ef0c8af307d8e5eb96600c560f4f05b553429eb5) Thanks [@elitalpa](https://github.com/elitalpa)! - new `--extension` option for giving new file a custom extension instead of the one from the config
+
+- [#30](https://github.com/elitalpa/creanote/pull/30) [`ef0c8af`](https://github.com/elitalpa/creanote/commit/ef0c8af307d8e5eb96600c560f4f05b553429eb5) Thanks [@elitalpa](https://github.com/elitalpa)! - creanote `version` number is now added automatically in config.json
+
 ## 0.3.0
 
 ### Minor Changes
