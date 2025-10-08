@@ -2,7 +2,7 @@ import { loadConfig, log, addFromTemplate } from "@/utils";
 
 export function add(
   type: string,
-  options: { date?: string; filename?: string }
+  options: { date?: string; filename?: string; extension?: string }
 ) {
   const config = loadConfig();
 
@@ -22,5 +22,11 @@ export function add(
     process.exit(1);
   }
 
-  addFromTemplate(config, template, options.date, options.filename);
+  addFromTemplate(
+    config,
+    template,
+    options.date,
+    options.filename,
+    options.extension
+  );
 }

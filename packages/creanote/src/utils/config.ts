@@ -4,6 +4,7 @@ import { Config, LegacyConfig, Template } from "@/types";
 import { log } from "./log";
 import { ensureGitignore } from "./gitignore";
 import { excalidrawTemplate } from "../data/templates";
+import packageJson from "../../package.json" assert { type: "json" };
 
 export function getConfigPath(): string {
   return path.join(process.cwd(), ".creanote", "config.json");
@@ -139,6 +140,23 @@ export function migrateLegacyConfig(legacyConfig: LegacyConfig): Config {
   return newConfig;
 }
 
+export function addVersionIfMissing(config: Config): Config {
+  const currentVersion = config.info.version;
+  const packageVersion = packageJson.version;
+
+  if (!currentVersion) {
+    log.info("Adding version to config...");
+    config.info.version = packageVersion;
+  } else if (currentVersion !== packageVersion) {
+    log.info(
+      `Updating config version from ${currentVersion} to ${packageVersion}...`
+    );
+    config.info.version = packageVersion;
+  }
+
+  return config;
+}
+
 export function loadConfig(): Config | null {
   const configPath = getConfigPath();
 
@@ -148,17 +166,26 @@ export function loadConfig(): Config | null {
 
   try {
     const configContent = fs.readFileSync(configPath, "utf-8");
-    const config = JSON.parse(configContent);
-
-    if (isValidConfig(config)) {
-      return config;
-    }
+    let config = JSON.parse(configContent);
 
     if (isLegacyConfig(config)) {
-      const migratedConfig = migrateLegacyConfig(config);
-      saveConfig(migratedConfig);
+      config = migrateLegacyConfig(config);
+      saveConfig(config);
       log.success("Config migrated to new format");
-      return migratedConfig;
+    }
+
+    if (isValidConfig(config)) {
+      // Add version if missing or update if outdated
+      const originalVersion = config.info.version;
+      config = addVersionIfMissing(config);
+
+      // Save config if version was added or updated
+      if (originalVersion !== config.info.version) {
+        saveConfig(config);
+        log.success("Config version updated");
+      }
+
+      return config;
     }
 
     log.error("Invalid config format found");
@@ -184,6 +211,7 @@ export function createDefaultConfig(): Config {
   return {
     info: {
       name: "creanote",
+      version: packageJson.version,
       author: "elitalpa",
       url: "https://github.com/elitalpa/creanote#readme",
       license: "MIT",
