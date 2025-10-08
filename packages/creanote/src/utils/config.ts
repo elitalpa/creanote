@@ -140,6 +140,14 @@ export function migrateLegacyConfig(legacyConfig: LegacyConfig): Config {
   return newConfig;
 }
 
+export function addVersionIfMissing(config: Config): Config {
+  if (!config.info.version) {
+    log.info("Adding version to config...");
+    config.info.version = packageJson.version;
+  }
+  return config;
+}
+
 export function loadConfig(): Config | null {
   const configPath = getConfigPath();
 
@@ -149,17 +157,26 @@ export function loadConfig(): Config | null {
 
   try {
     const configContent = fs.readFileSync(configPath, "utf-8");
-    const config = JSON.parse(configContent);
-
-    if (isValidConfig(config)) {
-      return config;
-    }
+    let config = JSON.parse(configContent);
 
     if (isLegacyConfig(config)) {
-      const migratedConfig = migrateLegacyConfig(config);
-      saveConfig(migratedConfig);
+      config = migrateLegacyConfig(config);
+      saveConfig(config);
       log.success("Config migrated to new format");
-      return migratedConfig;
+    }
+
+    if (isValidConfig(config)) {
+      // Add version if missing
+      const originalVersion = config.info.version;
+      config = addVersionIfMissing(config);
+
+      // Save config if version was added
+      if (!originalVersion && config.info.version) {
+        saveConfig(config);
+        log.success("Version added to config");
+      }
+
+      return config;
     }
 
     log.error("Invalid config format found");
