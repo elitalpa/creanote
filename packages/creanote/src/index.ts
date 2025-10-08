@@ -31,6 +31,7 @@ async function main() {
     .description("Add a new note")
     .option("--date <date>", "Specify a date for the daily note")
     .option("--filename <filename>", "Specify a custom filename")
+    .option("--extension <extension>", "Override the file extension")
     .action((type, options) => {
       // Check config before running add command
       if (!configExists()) {
@@ -77,7 +78,11 @@ async function main() {
     .command("add <template> <topic>")
     .description("Create a note with AI-generated content")
     .option("--date <date>", "Specify a date for the note")
-    .option("--filename <filename>", "Specify a custom filename")
+    .option(
+      "--filename <filename>",
+      "Specify a custom filename (without extension)"
+    )
+    .option("--extension <extension>", "Override the file extension")
     .action(async (template, topic, options) => {
       if (!configExists()) {
         log.error("Config not found. Run 'creanote init' first.");

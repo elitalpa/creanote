@@ -28,7 +28,8 @@ export function addFromTemplate(
   config: Config,
   template: Template,
   date?: string,
-  filename?: string
+  filename?: string,
+  extension?: string
 ) {
   const targetDate = date ? new Date(date) : new Date();
   const year = targetDate.getFullYear();
@@ -36,19 +37,25 @@ export function addFromTemplate(
   const day = String(targetDate.getDate()).padStart(2, "0");
   const week = String(getWeekNumber(targetDate)).padStart(2, "0");
 
+  // Use custom extension if provided, otherwise use template extension
+  const finalExtension = extension || template.ext;
+
   // Replace template variables in target path
   let targetPath = replaceTemplateVariables(template.target, {
     year: year.toString(),
     month: month,
     day: day,
     week: week,
-    ext: template.ext,
+    ext: finalExtension,
   });
 
   // Use custom filename if provided
   if (filename) {
     const pathParts = targetPath.split("/");
-    pathParts[pathParts.length - 1] = filename;
+
+    // Replace target filename with the provided filename and add the extension
+    pathParts[pathParts.length - 1] = `${filename}.${finalExtension}`;
+
     targetPath = pathParts.join("/");
   }
 

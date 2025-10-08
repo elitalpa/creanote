@@ -107,7 +107,7 @@ export async function chatWithAI() {
 export async function addWithAI(
   templateName: string,
   topic: string,
-  options: { date?: string; filename?: string }
+  options: { date?: string; filename?: string; extension?: string }
 ) {
   const config = loadConfig();
   if (!config) {
@@ -180,18 +180,24 @@ export async function addWithAI(
   const { getWeekNumber } = await import("@/utils");
   const week = String(getWeekNumber(targetDate)).padStart(2, "0");
 
+  // Use custom extension if provided, otherwise use template extension
+  const finalExtension = options.extension || template.ext;
+
   let targetPath = replaceTemplateVariables(template.target, {
     year: year.toString(),
     month: month,
     day: day,
     week: week,
-    ext: template.ext,
+    ext: finalExtension,
   });
 
   // Generate unique filename based on topic or use custom filename
   if (options.filename) {
     const pathParts = targetPath.split("/");
-    pathParts[pathParts.length - 1] = options.filename;
+
+    // Replace target filename with the provided filename and add the extension
+    pathParts[pathParts.length - 1] = `${options.filename}.${finalExtension}`;
+
     targetPath = pathParts.join("/");
   } else {
     // Generate filename from topic
@@ -200,7 +206,7 @@ export async function addWithAI(
     const uniqueFilename = generateUniqueFilename(
       path.join(process.cwd(), config.settings.basePath, folderPath),
       topic,
-      template.ext
+      finalExtension
     );
     pathParts[pathParts.length - 1] = uniqueFilename;
     targetPath = pathParts.join("/");
