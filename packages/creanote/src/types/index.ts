@@ -69,6 +69,7 @@ interface Settings {
 interface Config {
   info: {
     name: string;
+    version?: string;
     author: string;
     url: string;
     license: string;

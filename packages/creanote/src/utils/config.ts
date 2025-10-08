@@ -4,6 +4,7 @@ import { Config, LegacyConfig, Template } from "@/types";
 import { log } from "./log";
 import { ensureGitignore } from "./gitignore";
 import { excalidrawTemplate } from "../data/templates";
+import packageJson from "../../package.json" assert { type: "json" };
 
 export function getConfigPath(): string {
   return path.join(process.cwd(), ".creanote", "config.json");
@@ -184,6 +185,7 @@ export function createDefaultConfig(): Config {
   return {
     info: {
       name: "creanote",
+      version: packageJson.version,
       author: "elitalpa",
       url: "https://github.com/elitalpa/creanote#readme",
       license: "MIT",
