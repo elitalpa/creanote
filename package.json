@@ -13,10 +13,10 @@
     "creanote:build": "pnpm --filter=creanote build"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.29.5",
+    "@changesets/cli": "^2.31.0",
     "eslint": "^8.57.1",
-    "prettier": "^3.5.3",
-    "turbo": "^2.5.4"
+    "prettier": "^3.9.0",
+    "turbo": "^2.10.0"
   },
   "packageManager": "pnpm@8.15.6",
   "engines": {
