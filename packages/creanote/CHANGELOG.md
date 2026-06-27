@@ -1,5 +1,11 @@
 # creanote
 
+## 0.3.2
+
+### Patch Changes
+
+- [#35](https://github.com/elitalpa/creanote/pull/35) [`54806b3`](https://github.com/elitalpa/creanote/commit/54806b3c6a90ab0a96d61cec000e6d7bc1d53e17) Thanks [@elitalpa](https://github.com/elitalpa)! - Upgrading deps
+
 ## 0.3.1
 
 ### Patch Changes
